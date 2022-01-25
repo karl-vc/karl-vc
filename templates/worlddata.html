@@ -1,0 +1,231 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Login 10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> -->
+
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+	
+	<link rel="stylesheet" href="{% static 'login-form-20/css/style.css' %}" type="text/css" >
+	<link rel="stylesheet" href="{% static 'css/boot_css/bootstrap.min.css' %}" type="text/css" >
+	<script type="text/javascript" src="{% static 'login-form-20/js/jquery.min.js' %}"></script>
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url({% static 'login-form-20/images/bg.jpg' %});">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section"></h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">COUNTRY || STATE || CITY </h3>
+
+
+<!--  ----------------------------------------------------------------------| -->
+
+
+<form method="post">
+	{% csrf_token %}
+	
+	
+<!-- <div class="dropdown"> -->
+
+<select name="selectCountry" id="selectCountry">
+	<option disabled selected> --select-- </option>
+	{% for i in country_data %}
+	 <option value="{{i.id}}">{{ i.country}}</option>
+	{% endfor %}
+
+</select>
+
+
+
+<select name="selectState" id="selectState">
+	<option disabled selected> --select-- </option>
+
+</select>
+
+
+
+
+
+
+<select name="city" id="city">
+	<option disabled selected> --select-- </option>
+
+</select>
+
+
+
+
+
+</form>
+
+<!-- from here we start Ajax -->
+
+<script>
+
+// function changestatus(type){
+//   $.ajax({
+//         url: '{{getjsondata}}',
+//         type: 'get',
+//         data:{
+          
+//           'selected_country':selected_country,
+//           'type':type,
+//         },
+//         success: function(response){
+//         	console.log("success");
+//           // window.location.reload();
+//         }
+//       });
+//       }
+
+$("#selectCountry").on('change',function(){
+
+	var selected_country = $("#selectCountry").find(":selected").text();
+	var id = $(this).val();
+
+	$.ajax({
+        url: 'http://127.0.0.1:8000/getjsondata',
+        // url: '{{getjsondata}}',
+        type: 'get',
+        data:{
+          
+          	'id':id,
+        },
+        success: function(response){
+        	$("#selectState").html("");
+        	for (var i = 0; i <= response.data.length; i++) {
+
+        		var html = `<option value="${response.data[i].state_id}">${response.data[i].state_name}</option>`;
+        		$("#selectState").append(html);
+        	}
+        }
+      });
+
+
+
+})
+</script>
+
+
+<script>
+// ajax for cities------------------------------------------------------------
+
+$("#selectState").on('change',function(){
+
+	var selected_country = $("#selectState").find(":selected").text();
+	var id = $(this).val();
+
+	$.ajax({
+        url: 'http://127.0.0.1:8000/getjsoncity',
+        // url: '{{getjsondata}}',
+        type: 'get',
+        data:{
+          
+          	'id':id,
+        },
+        success: function(response){
+        	$("#city").html("");
+        	for (var i = 0; i <= response.data.length; i++) {
+        		var html = `<option value="${response.data[i].city_id}">${response.data[i].city_name}</option>`;
+        		$("#city").append(html);
+        	}
+        }
+      });
+
+
+
+})
+
+
+
+</script>
+
+
+<!-- </div> -->
+
+<!-- 
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Country name</th> 
+     
+
+
+    </tr>
+  </thead>
+  {% if country_data %}
+  {% for i in country_data %}
+  <tbody>
+    <tr>
+      <td>{{ i }}</td>
+  
+
+    </tr>
+   
+  </tbody>
+  {% endfor %}
+  {% endif %}
+</table>
+	      
+
+
+ -->
+
+<!-- 
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>`
+
+
+
+
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div> -->
+
+	          <!-- ------------------------------------------------------------------------------------------ -->
+	          
+	          <div class="social d-flex text-center">
+	          	
+	          </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'login-form-20/js/jquery.min.js' %}"></script>
+  <script src="{% static 'login-form-20/js/popper.js' %}"></script>
+  <script src="{% static 'login-form-20/js/jquery.min.js' %}"></script>
+  <script src="{% static 'login-form-20/js/main.js' %}"></script>
+
+	</body>
+</html>
+

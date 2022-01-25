@@ -1,0 +1,7 @@
+.table-blue{
+    background-color:red;
+    }
+
+.table-blue.table-striped tbody tr:nth-of-type(odd){
+background-color:aqua;
+}

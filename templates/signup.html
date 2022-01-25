@@ -1,0 +1,167 @@
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creative Colorlib SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+
+<!-- Custom Theme files -->
+<link href ="{% static 'css/boot_css/bootstrap.min.css' %}" rel = "stylesheet" type="text/css" >
+<link href="{% static 'css/test.css' %}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{% static 'js/jquery_full.js' %}">
+	
+</script>
+<!-- //Custom Theme files -->
+<!-- web font -->
+<!-- <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet"> -->
+<!-- //web font -->
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Creative SignUp Form</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+
+				<form method="post" enctype="multipart/form-data" name = 'signupform' onsubmit="return validateform()">
+
+					{% csrf_token %}
+					{% if fail %}
+						<script type="text/javascript">alert('Incorrect password')</script>	
+					{% endif %}
+					{% if email %}
+					<script type="text/javascript">alert('Email already exist')</script>
+
+					{% endif %}
+
+					{% if empty %}
+					<script type="text/javascript">alert('fields are empty')</script>
+
+					{% endif %}
+					<label>First Name</label>
+					<input class="text" type="text" name="firstname" placeholder="First Name">
+
+					
+
+
+					<label>Last Name</label>
+
+					<input class="text" type="text" name="lastname" placeholder="Last Name">
+					<label>Email</label>
+					<input class="text email" type="email" name="email" placeholder="Email" >
+					<label>phone number</label>
+					<input type="text" class="text w3lpass" id="phone" placeholder="Enter Phone Number" name="phone" >	
+					<label>Upload Profile Picture</label>	
+  					<input type="file" id="image" name="image">
+
+
+
+					<label>passowrd</label>
+
+					<input class="text" type="password" name="rawPassword" placeholder="Password" >
+										<label>confirm password</label>
+
+					<input class="text w3lpass" type="password" name="confirmPassword" placeholder="Confirm Password" >
+
+
+					<!-- <div class="wthree-text">
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span>I Agree To The Terms & Conditions</span>
+						</label>
+						<div class="clear"> </div>
+					</div> -->
+					<input type="submit" value="SIGNUP">
+
+
+					<script>
+						function validateform(){  
+						var firstname = document.signupform.firstname.value;  
+						var lastname = document.signupform.lastname.value;  
+						var email = document.signupform.email.value;  
+						var phone = document.signupform.phone.value;  
+						var image = document.signupform.image.value;  
+						var rawPassword = document.signupform.rawPassword.value;  
+						var confirmPassword = document.signupform.confirmPassword.value;  
+
+
+
+
+
+
+						// console.log(name); // displays "INPUT"
+
+						if (firstname==null || firstname==""){  
+						  alert("first name can't be blank");  
+						  return false;  }
+
+						else if(lastname == null || lastname ==""){
+							alert("last name cant be blank");
+							return false; }
+
+
+						else if(email == null || email ==""){
+							alert("email field cant be blank");
+							return false; }
+
+
+						else if(phone == null || phone ==""){
+							alert("phone field cant be blank");
+							return false; }
+
+ 						else if(image == null || image ==""){
+							alert("image field cant be blank");
+							return false; }
+
+						else if(rawPassword == null || rawPassword ==""){
+							alert("rawPassword field cant be blank");
+							return false; }
+
+						else if(confirmPassword == null || confirmPassword ==""){
+							alert("confirmPassword field cant be blank");
+							return false; }
+
+
+
+						}
+
+					</script>
+
+
+
+
+
+				</form>
+				<p>Don't have an Account? <a href="login"> Login Now!</a></p>
+			</div>
+		</div>
+		<!-- copyright -->
+		<div class="colorlibcopy-agile">
+			<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+		</div>
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+</body>
+</html>

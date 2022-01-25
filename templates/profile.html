@@ -1,0 +1,80 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+      <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" type="text/css" >
+
+    
+     <script type="text/javascript" src="{% static 'js/jquery_full.js' %}"></script>
+
+
+{% if fail %}
+<script type="text/javascript">alert('id does not matched')</script>
+    {% endif %}
+    </head>
+    
+<body>
+    <table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      
+      <th scope="col">user ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Profile Picture</th>
+
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      
+      <td>{{ user_obj.id }}</td>
+      <td>{{ user_obj.first_name }}</td>
+      <td>{{ user_obj.last_name }}</td>
+      <td>{{ user_obj.email }}</td>
+      <td>{{ profileData.phoneNumber }}</td>
+      <td><a href="{{ profileData.profilePic.url }}" target="_blank">Profile pic</a></td>
+
+
+
+
+      
+
+
+      <td>
+       <a href="{% url 'testApp:logout' %}"><button type="submit" class="form-control btn btn-primary submit px-3">logout</button></a>
+      </td>
+
+
+
+      <td>
+       <a href="{% url 'testApp:home' %}"><button type="submit" class="form-control btn btn-primary submit px-3">Home</button></a>
+      </td>
+
+
+      <td>
+       <a href="{% url 'testApp:edit' %}"><button type="submit" class="form-control btn btn-primary submit px-3">Edit</button></a>
+      </td>
+
+    </tr>
+
+    
+  </tbody>
+
+</table>
+
+   
+
+
+
+
+</body>
+</html>
